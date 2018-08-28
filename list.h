@@ -114,7 +114,8 @@ class List {
         }
 
         void concat(List<T> &other){
-
+            tail->next = other->head;
+            nodes += other->nodes; 
         }
 
         bool empty(){
