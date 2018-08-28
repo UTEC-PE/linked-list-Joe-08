@@ -38,19 +38,19 @@ class List {
         }
 
         void push_front(T value){
-            if(!head){
-                head = new Node<T>;
-                head->data = value;
-                head->next = nullptr;
-                tail = head;
-                ++nodes;
-                return;
-            }
-            Node<T>* nodo = new Node<T>;
-            nodo->data = value;
-            nodo->next = head;
-            head = nodo;
+            Node<T>* temp = new Node<T>;
+            temp->data = value;
+            temp->next = nullptr;
             nodes++;
+            if(nodes == 0){
+                head = temp;
+                tail = temp;
+            }
+            else{
+                temp->next = head;
+                head = temp;    
+            }
+            
         }
 
         void push_back(T value){
