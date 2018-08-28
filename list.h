@@ -24,69 +24,93 @@ class List {
         }
 
         T front(){
+            if (!head){
+                throw "Lista vacia";
+            }
             return head->data;
         }
 
         T back(){
+            if (!tail){
+                throw "Lista vacia";
+            }
             return tail->data;
         }
 
         void push_front(T value){
-            if(head == NULL)
-            {
+            if(!head){
                 head = new Node<T>;
                 head->data = value;
-                head->next = NULL;
+                head->next = nullptr;
                 tail = head;
                 ++nodes;
+                return;
             }
-            else
-            {
-                Node<T>* nodo = new Node<T>;
-                nodo->data = value;
-                nodo->next = head;
-                nodo = head;
-                ++nodes;
-            }
+            Node<T>* nodo = new Node<T>;
+            nodo->data = value;
+            nodo->next = head;
+            head = nodo;
+            nodes++;
         }
 
         void push_back(T value){
-            if (tail == NULL)
-            {
-                tail = new Node<T>;
-                tail->data = value;
-                tail->next = NULL;
-                head = tail;
-                ++nodes;
+            Node<T>* temp = new Node<T>;
+            temp->data = value;
+            temp->next = nullptr;
+            nodes++;
+            if (nodes == 0){
+                head = temp;
+                tail = temp;
             }
             else{
-                Node<T>* nodo = new Node<T>;
-                nodo->data = value;
-                nodo->next = NULL;
-                nodo = tail;
-                ++nodes;
+                tail->next = temp;
+                tail = temp;
             }
         }
         
         void pop_front(){
-            if (head == NULL)
+            if (!head)
             {
-                ;
+                throw "Lista vacia";
+                return;
             }
-            else{
-                Node<T>* nodo = new Node<T>;
-                nodo->head = value;
-                head->next;
-
-            }
+            Node<T> *temp = head;
+            head = head->next;
+            delete temp;
         }
 
         void pop_back(){
-
+            if (!head)
+            {
+                throw "Lista vacia";
+                return;
+            }
+            Node<T> *tail2 = tail;
+            Node<T> *temp = head;
+            for (int i = 0; i < nodes; i++)
+            {
+                if (temp->next == tail)
+                {
+                    tail = temp;
+                    continue;
+                }
+                temp = 
+            }
         }
         
         T get(int position){
-
+            if (position >= nodes || position < 0){
+                throw "Pos..";
+            }
+            int index = 0;
+            Node<T>* temp = head;
+            while(temp){
+                if (index = position){
+                    return temp->data
+                }
+                temp = temp->next;
+                index++;
+            }
         }
 
         void concat(List<T> &other){
@@ -94,31 +118,31 @@ class List {
         }
 
         bool empty(){
-
+            return head == NULL;
         }
 
         int size(){
-
+            return nodes;
         }
 
         void print(){
             Node<T> *temp = head;
-            if (temp != NULL)
-             {
-                cout<< temp->data <<endl;
-                temp = temp->next
-             }
-             else{
-                cout<<"no hay elementos"<<endl;
-             } 
+            while(temp)
+            {
+                cout<< temp->data << endl;
+                temp = temp->next;
+            }
         }
 
         void print_reverse(){
-
+            if (!head){
+                throw "Lista vacia";
+            }
+            head->printReverse();
         }
         
         void clear(){
-
+        	head->killSelf();
         }
 
         Iterator<T> begin(){
@@ -129,7 +153,5 @@ class List {
 
         }
 
-        ~List(){
-
-        }
+        ~List();
 #endif

@@ -6,7 +6,15 @@ struct Node {
     T data;
     struct Node* next;
 
-    void killSelf();
+    void killSelf(){
+    	next->killSelf();
+    	delete this;
+    }
+    void printReverse(){
+    	if (next != NULL)
+    		next->printReverse();
+    	std::cout<<data;
+    }
 };
 
 #endif
