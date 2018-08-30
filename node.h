@@ -7,7 +7,7 @@ struct Node {
     struct Node* next;
 
     void killSelf(){
-    	next->killSelf();
+    	next->killSelf(); // Esto no está verificando si el siguiente no es null, va a crashear
     	delete this;
     }
     void printReverse(){

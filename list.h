@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "node.h"
-#include "iterator.h"
 
 using namespace std;
 
@@ -41,7 +40,7 @@ class List {
             Node<T>* temp = new Node<T>;
             temp->data = value;
             temp->next = nullptr;
-            nodes++;
+            nodes++; // Si ejecutas esto antes de tu if entonces nodes no va a ser 0, por tanto tu primera condición no va afuncionar
             if(nodes == 0){
                 head = temp;
                 tail = temp;
@@ -57,7 +56,7 @@ class List {
             Node<T>* temp = new Node<T>;
             temp->data = value;
             temp->next = nullptr;
-            nodes++;
+            nodes++; // Mismo caso que la función anterior
             if (nodes == 0){
                 head = temp;
                 tail = temp;
@@ -94,7 +93,7 @@ class List {
                     tail = temp;
                     continue;
                 }
-                temp = 
+                temp = // Incompleto
             }
         }
         
@@ -106,7 +105,7 @@ class List {
             Node<T>* temp = head;
             while(temp){
                 if (index = position){
-                    return temp->data
+                    return temp->data // Falta ;
                 }
                 temp = temp->next;
                 index++;
@@ -114,7 +113,7 @@ class List {
         }
 
         void concat(List<T> &other){
-            tail->next = other->head;
+            tail->next = other->head; // Falta igualar la cola a la cola de la nueva lista y verificar si la lista está vacía
             nodes += other->nodes; 
         }
 
@@ -143,16 +142,10 @@ class List {
         }
         
         void clear(){
-        	head->killSelf();
+        	head->killSelf(); //Y si la lista está vacía? head = tail = nullptr?
         }
 
-        Iterator<T> begin(){
+        ~List(); // falta el destructor
 
-        }
-
-        Iterator<T> end(){
-
-        }
-
-        ~List();
+// }; La lista no se cerró, esto no va a compilar
 #endif
